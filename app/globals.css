@@ -56,12 +56,7 @@ body {
 }
 .header-meta { text-align: right; flex-shrink: 0; }
 
-/* bio */
-.bio-inner {
-  display: flex;
-  gap: 0;
-  align-items: flex-start;
-}
+/* bio — handled via inline grid now */
 
 /* grids */
 .resp-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); }
@@ -79,7 +74,6 @@ body {
 @media (max-width: 768px) {
   .header-row    { flex-direction: column; gap: 8px; }
   .header-meta   { text-align: left; }
-  .bio-inner     { flex-direction: column; }
   .bio-books     { display: none; }
   .resp-grid-4   { grid-template-columns: repeat(2, 1fr); }
   .resp-grid-3   { grid-template-columns: repeat(2, 1fr); }
