@@ -39,106 +39,108 @@ export default function Home() {
       </header>
 
       {/* ── yang bin bio ─────────────────────────────────────────────────────── */}
-      <section id="bio" style={{ borderBottom: '1px solid var(--rule)', background: 'var(--paper)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', minHeight: 0 }}>
+      <section id="bio" style={{ borderBottom: '1px solid var(--rule)', background: 'var(--paper)',
+        padding: '20px var(--page-px)' }}>
+        <div style={{ display: 'flex', gap: 20, alignItems: 'flex-start' }}>
 
-          {/* ── portrait column ── */}
-          <div style={{ position: 'relative', overflow: 'hidden', background: '#ece6d4' }}>
+          {/* portrait — fixed size, no drama */}
+          <div style={{ flexShrink: 0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/portrait.jpg"
               alt="杨斌教授"
               style={{
-                width: '100%',
-                height: '100%',
+                width: 80, height: 106,
                 objectFit: 'cover',
                 objectPosition: 'center top',
                 display: 'block',
-                minHeight: 280,
+                borderRadius: 3,
+                border: '1px solid var(--rule)',
               }}
             />
-            {/* right-edge fade */}
-            <div style={{
-              position: 'absolute', top: 0, right: 0, bottom: 0, width: 48,
-              background: 'linear-gradient(to right, transparent, #ece6d4)',
-              pointerEvents: 'none',
-            }} />
           </div>
 
-          {/* ── right panel ── */}
-          <div style={{ padding: '28px 32px 24px var(--page-px)', display: 'flex', gap: 32 }}>
-
-            {/* bio text */}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 4 }}>
-                <span style={{ fontSize: 20, fontFamily: 'var(--font-serif)', fontWeight: 400, color: 'var(--ink)' }}>杨斌</span>
-                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.05em' }}>Yang Bin</span>
-              </div>
-              <div style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
-                marginBottom: 14, lineHeight: 1.9 }}>
-                清华大学经济管理学院 教授
-                <span style={{ margin: '0 6px', color: 'var(--rule-2)' }}>·</span>
-                前清华大学副校长兼教务长（2014—2024）
-                <span style={{ margin: '0 6px', color: 'var(--rule-2)' }}>·</span>
-                人工智能国际治理研究院 学术委员会主任
-              </div>
-              <p style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.8, margin: '0 0 8px' }}>
-                管理学者，长期从事领导力、组织行为与高等教育研究。1987 年入清华经管，此后三十余年于此治学、执教，历任学院副院长、常务副院长，2014 年出任清华大学副校长兼教务长，主持全校学术事务逾十年。
-              </p>
-              <p style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.8, margin: '0 0 16px' }}>
-                2023 年起系统写作 AI 与组织、教育、治理议题，提出 xᴬᴵ 框架与"模元"等原创概念。曾获 2023 年国家级教学成果奖特等奖。
-              </p>
-              <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', paddingTop: 12, borderTop: '1px solid var(--rule)' }}>
-                {[
-                  { label: '管理学博士', detail: '清华大学' },
-                  { label: '国家教学成果特等奖', detail: '2023' },
-                  { label: '写作跨度', detail: '2023—2026' },
-                  { label: '文章', detail: `${sortedArticles.length} 篇` },
-                ].map(({ label, detail }) => (
-                  <div key={label} style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
-                    <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{label}</span>
-                    <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink)', fontWeight: 500 }}>{detail}</span>
-                  </div>
-                ))}
-              </div>
+          {/* content */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            {/* name row */}
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 3 }}>
+              <span style={{ fontSize: 18, fontFamily: 'var(--font-serif)', fontWeight: 400, color: 'var(--ink)' }}>杨斌</span>
+              <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.05em' }}>Yang Bin</span>
+            </div>
+            {/* titles */}
+            <div style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', marginBottom: 10, lineHeight: 1.8 }}>
+              清华大学经济管理学院 教授
+              <span style={{ margin: '0 6px', color: 'var(--rule-2)' }}>·</span>
+              前清华大学副校长兼教务长（2014—2024）
+              <span style={{ margin: '0 6px', color: 'var(--rule-2)' }}>·</span>
+              人工智能国际治理研究院 学术委员会主任
             </div>
 
-            {/* books sidebar */}
-            <div className="bio-books" style={{ flexShrink: 0, width: 188, borderLeft: '1px solid var(--rule)', paddingLeft: 24 }}>
-              <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 12px' }}>著译</p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginBottom: 18 }}>
-                {[
-                  { title: '卓越领导之道', role: '著', note: '人大出版社 · 2008' },
-                  { title: '沉静领导', role: '译', note: 'Badaracco · 2003' },
-                  { title: '管理者而非 MBA', role: '译', note: 'Mintzberg · 2004' },
-                  { title: '极客与怪杰', role: '译', note: '领导力研究 · 2006' },
-                ].map(b => (
-                  <div key={b.title}>
-                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 5, marginBottom: 1 }}>
-                      <span style={{ fontSize: 8, fontFamily: 'var(--font-mono)', color: '#b45309', background: '#b4530912', padding: '1px 4px', borderRadius: 2, flexShrink: 0 }}>{b.role}</span>
-                      <span style={{ fontSize: 11, color: 'var(--ink)', fontFamily: 'var(--font-serif)' }}>《{b.title}》</span>
+            {/* bio + books side by side */}
+            <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
+              {/* bio text */}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.75, margin: '0 0 6px' }}>
+                  管理学者，长期从事领导力、组织行为与高等教育研究。1987 年入清华经管，此后三十余年于此治学、执教，2014 年出任清华大学副校长兼教务长，主持全校学术事务逾十年。
+                </p>
+                <p style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.75, margin: '0 0 12px' }}>
+                  2023 年起系统写作 AI 与组织、教育、治理议题，提出 xᴬᴵ 框架与"模元"等原创概念。曾获 2023 年国家级教学成果奖特等奖。
+                </p>
+                {/* stats */}
+                <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+                  {[
+                    { label: '管理学博士', detail: '清华大学' },
+                    { label: '国家教学成果特等奖', detail: '2023' },
+                    { label: '写作跨度', detail: '2023—2026' },
+                    { label: '文章', detail: `${sortedArticles.length} 篇` },
+                  ].map(({ label, detail }) => (
+                    <div key={label} style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
+                      <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{label}</span>
+                      <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink)', fontWeight: 500 }}>{detail}</span>
                     </div>
-                    <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', paddingLeft: 22 }}>{b.note}</span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-              <div style={{ height: 1, background: 'var(--rule)', marginBottom: 12 }} />
-              <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 12px' }}>文中常引</p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-                {[
-                  { title: '第五项修炼', note: 'Senge' },
-                  { title: '有限与无限的游戏', note: 'Carse' },
-                  { title: '发展即自由', note: 'Sen' },
-                  { title: '创新者的窘境', note: 'Christensen' },
-                ].map(b => (
-                  <div key={b.title}>
-                    <span style={{ fontSize: 11, color: 'var(--ink)', fontFamily: 'var(--font-serif)' }}>《{b.title}》</span>
-                    <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', marginLeft: 5 }}>{b.note}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
 
+              {/* books — two compact columns */}
+              <div className="bio-books" style={{ flexShrink: 0, width: 380, borderLeft: '1px solid var(--rule)', paddingLeft: 24, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 24px' }}>
+                {/* 著译 */}
+                <div>
+                  <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 8px' }}>著译</p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+                    {[
+                      { title: '卓越领导之道', role: '著' },
+                      { title: '沉静领导', role: '译' },
+                      { title: '管理者而非 MBA', role: '译' },
+                      { title: '极客与怪杰', role: '译' },
+                    ].map(b => (
+                      <div key={b.title} style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
+                        <span style={{ fontSize: 8, fontFamily: 'var(--font-mono)', color: '#b45309', background: '#b4530912', padding: '1px 4px', borderRadius: 2, flexShrink: 0 }}>{b.role}</span>
+                        <span style={{ fontSize: 11, color: 'var(--ink)', fontFamily: 'var(--font-serif)' }}>《{b.title}》</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {/* 文中常引 */}
+                <div>
+                  <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 8px' }}>文中常引</p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+                    {[
+                      { title: '第五项修炼', note: 'Senge' },
+                      { title: '有限与无限的游戏', note: 'Carse' },
+                      { title: '发展即自由', note: 'Sen' },
+                      { title: '创新者的窘境', note: 'Christensen' },
+                    ].map(b => (
+                      <div key={b.title}>
+                        <span style={{ fontSize: 11, color: 'var(--ink)', fontFamily: 'var(--font-serif)' }}>《{b.title}》</span>
+                        <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', marginLeft: 5 }}>{b.note}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </section>
