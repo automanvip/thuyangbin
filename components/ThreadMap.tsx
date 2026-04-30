@@ -275,8 +275,7 @@ export default function ThreadMap() {
 
                   {/* platform */}
                   <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)',
-                    color: 'var(--ink-3)', lineHeight: 1,
-                    overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    color: 'var(--ink-3)', lineHeight: 1 }}>
                     {article.account ?? article.platform}
                   </span>
 

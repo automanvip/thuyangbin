@@ -1,7 +1,7 @@
 import ThreadMap from '@/components/ThreadMap'
 import SectionNav from '@/components/SectionNav'
 import BooksPanel from '@/components/BooksPanel'
-import { themes, sortedArticles, discoveries } from '@/lib/data'
+import { themes, sortedArticles, discoveries, getTheme } from '@/lib/data'
 
 export default function Home() {
   const { mostConnected, themeArticleCounts, mostProlificMonth } = discoveries
@@ -206,7 +206,7 @@ export default function Home() {
             {
               label: '最枢纽文章',
               value: mostConnected.title,
-              sub: `触及 ${mostConnected.themes.length} 条脉络：${mostConnected.themes.join(' · ')}`,
+              sub: `触及 ${mostConnected.themes.length} 条脉络：${mostConnected.themes.map(id => getTheme(id).label).join(' · ')}`,
               color: '#b45309',
             },
             {
@@ -257,7 +257,7 @@ export default function Home() {
             { quote: '底数不变，AI 只放大既有缺陷。', src: '底数得质变——以新教育的 AI 次方为例', date: '2025.11', color: '#b45309', label: 'xᴬᴵ 框架' },
             { quote: 'AI 的轨迹，终究由人的选择而非技术本身决定。', src: '善 AI，以能动，赋自由', date: '2025.06', color: '#6d28d9', label: '能动性' },
             { quote: '猪八戒的缺陷，是组织应该保护的，不是消除的。', src: '当 AI 成了"孙悟空"', date: '2026.02', color: '#92400e', label: '人的不完美' },
-            { quote: '大学的核心价值 = 教育 − 教学。', src: '这届大学生，如何拥抱……', date: '2025.07', color: '#1d4ed8', label: '教育转型' },
+            { quote: '大学的核心价值 = 教育 − 教学。', src: '这届大学生，如何拥抱 AI 大学', date: '2025.07', color: '#1d4ed8', label: '教育转型' },
             { quote: '最危险的大学，是没有差异化的跟随型顶尖院校。', src: '大学因何陷入窘境', date: '2025.05', color: '#1d4ed8', label: '教育转型' },
             { quote: '旧名字锁定旧框架，旧框架锁定旧失败。', src: 'AI 时代的"白马非马"', date: '2026.03', color: '#be123c', label: '命名即权力' },
             { quote: '组织的边界，从物理围墙变为核心能力的引力场。', src: '组织的 AI 次方', date: '2026.03', color: '#0f766e', label: '组织心理' },
@@ -277,8 +277,7 @@ export default function Home() {
                 &ldquo;{item.quote}&rdquo;
               </p>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
-                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
-                  overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 140 }}>
+                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>
                   {item.src}
                 </span>
                 <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--rule-2)', flexShrink: 0 }}>
