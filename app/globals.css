@@ -70,6 +70,10 @@ body {
 /* map scroll hint */
 .map-scroll-hint { display: none; }
 
+/* reading path card hover */
+.reading-path-card { transition: filter 0.12s; }
+.reading-path-card:hover { filter: brightness(0.96); }
+
 /* ── 768 px breakpoint ────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .header-row    { flex-direction: column; gap: 8px; }

@@ -1,6 +1,8 @@
 import ThreadMap from '@/components/ThreadMap'
 import SectionNav from '@/components/SectionNav'
 import BooksPanel from '@/components/BooksPanel'
+import HeroQuote from '@/components/HeroQuote'
+import CopyButton from '@/components/CopyButton'
 import { themes, sortedArticles, discoveries, getTheme } from '@/lib/data'
 
 export default function Home() {
@@ -23,9 +25,11 @@ export default function Home() {
                 AI · 组织 · 教育 · 2023—2026
               </span>
             </div>
-            <p style={{ fontSize: 14, color: 'var(--ink-3)', lineHeight: 1.6, margin: 0, maxWidth: 560 }}>
-              清华大学杨斌教授公开写作全集——{sortedArticles.length} 篇文章构成一个思想体系的渐进建构，
-              而非独立观点的简单堆叠。点击任意文章可展开关联理论、他山之石与发散思考。
+            <p style={{ fontSize: 14, color: 'var(--ink-2)', lineHeight: 1.65, margin: 0, maxWidth: 580 }}>
+              大多数组织的 AI 战略方向是错的——不是资源问题，是框架问题。
+              <span style={{ color: 'var(--ink-3)' }}>
+                {' '}清华大学杨斌教授 {sortedArticles.length} 篇公开写作的系统梳理，呈现一个持续演进的思想框架。
+              </span>
             </p>
           </div>
           <div className="header-meta">
@@ -38,6 +42,9 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+      {/* ── hero rotating quote ──────────────────────────────────────────────── */}
+      <HeroQuote />
 
       {/* ── yang bin bio ─────────────────────────────────────────────────────── */}
       <section id="bio" style={{ borderBottom: '1px solid var(--rule)', background: 'var(--paper)',
@@ -142,21 +149,36 @@ export default function Home() {
 
       {/* ── reading paths ────────────────────────────────────────────────────── */}
       <div style={{ borderBottom: '1px solid var(--rule)', background: '#f5f2ec',
-        padding: '10px var(--page-px)', display: 'flex', alignItems: 'center', gap: 20, overflowX: 'auto', scrollbarWidth: 'none' }}>
+        padding: '12px var(--page-px)', display: 'flex', alignItems: 'center', gap: 8,
+        overflowX: 'auto', scrollbarWidth: 'none' }}>
         <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
-          letterSpacing: '0.08em', flexShrink: 0 }}>
-          推荐入口 →
+          letterSpacing: '0.08em', flexShrink: 0, marginRight: 6 }}>
+          推荐路径 →
         </span>
         {[
-          { label: '快速了解（3篇）', note: '机器 · xᴬᴵ · 孙悟空', color: '#b45309' },
-          { label: '管理者优先（5篇）', note: 'xᴬᴵ · 组织指数 · 中年 · 基石 · 底数', color: '#0f766e' },
-          { label: '教育者优先（5篇）', note: '机器 · 大学窘境 · 大学生 · 底数 · 第四种', color: '#1d4ed8' },
-          { label: '政策视角（3篇）', note: '命名 · 模元 · 善AI', color: '#be123c' },
+          { label: '3 篇速读', note: '机器 · xᴬᴵ · 孙悟空', color: '#b45309', href: '#theses' },
+          { label: '管理者', note: 'xᴬᴵ · 组织 · 中年 · 基石 · 底数', color: '#0f766e', href: '#actions' },
+          { label: '教育者', note: '机器 · 窘境 · 大学生 · 底数 · 第四种', color: '#1d4ed8', href: '#actions' },
+          { label: '政策视角', note: '命名 · 模元 · 善AI', color: '#be123c', href: '#actions' },
         ].map((p) => (
-          <div key={p.label} style={{ display: 'flex', alignItems: 'baseline', gap: 6, flexShrink: 0 }}>
-            <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: p.color }}>{p.label}</span>
-            <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>{p.note}</span>
-          </div>
+          <a key={p.label} href={p.href} className="reading-path-card" style={{
+            display: 'flex', flexDirection: 'column', gap: 3,
+            padding: '7px 13px',
+            border: `1px solid ${p.color}30`,
+            borderRadius: 3,
+            background: `${p.color}08`,
+            textDecoration: 'none',
+            flexShrink: 0,
+          }}
+          >
+            <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: p.color, fontWeight: 500,
+              whiteSpace: 'nowrap' }}>
+              {p.label}
+            </span>
+            <span style={{ fontSize: 10, color: 'var(--ink-3)', whiteSpace: 'nowrap' }}>
+              {p.note}
+            </span>
+          </a>
         ))}
       </div>
 
@@ -276,13 +298,19 @@ export default function Home() {
                 color: 'var(--ink)', lineHeight: 1.6, margin: 0, flex: 1 }}>
                 &ldquo;{item.quote}&rdquo;
               </p>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
-                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>
-                  {item.src}
-                </span>
-                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--rule-2)', flexShrink: 0 }}>
-                  {item.date}
-                </span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
+                  <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>
+                    {item.src}
+                  </span>
+                  <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--rule-2)', flexShrink: 0 }}>
+                    {item.date}
+                  </span>
+                </div>
+                <CopyButton
+                  text={`"${item.quote}" ——杨斌《${item.src}》${item.date}`}
+                  label="复制"
+                />
               </div>
             </div>
           ))}
@@ -309,6 +337,7 @@ export default function Home() {
               node: '↺',
               title: '反向追问',
               desc: 'ChatGPT浪潮下，不问"机器会像人吗"，而问"我们在让人像机器吗"。教育的危机，是考卷考错了东西。',
+              trigger: 'ChatGPT 发布（2022.11）引爆全球讨论；杨斌以逆向追问切入',
             },
             {
               phase: '框架层',
@@ -317,6 +346,7 @@ export default function Home() {
               node: 'x',
               title: '工具箱成型',
               desc: 'xᴬᴵ框架、能动性概念、命名即权力——三套分析工具同步完成，从此所有具体问题都有了解析坐标。',
+              trigger: 'π Day 讲座（2025.03.14）；将 AI+ 批判系统化为指数框架',
             },
             {
               phase: '场景层',
@@ -325,6 +355,7 @@ export default function Home() {
               node: '⊕',
               title: '三维展开',
               desc: '框架落地于大学、组织、个人三个场景。K型分化、心理安全、底数质变——从判断到诊断。',
+              trigger: '清北秋季学期开学（2025.09）；系列文章密集出版',
             },
             {
               phase: '对策层',
@@ -333,6 +364,7 @@ export default function Home() {
               node: '→',
               title: '刻意应对',
               desc: '刻意忘却、保护八戒、模元正名——不只是问题意识，而是具体的抵御路径与重构方案。',
+              trigger: '张家界峰会讲座（2026.04.18）；提出"五大心件"与涌现变革路径',
             },
           ].map((item, i) => (
             <div key={item.phase} style={{ position: 'relative', paddingRight: i < 3 ? 24 : 0, zIndex: 1 }}>
@@ -361,6 +393,10 @@ export default function Home() {
               </p>
               <p style={{ fontSize: 13, color: 'var(--ink-3)', margin: 0, lineHeight: 1.6 }}>
                 {item.desc}
+              </p>
+              <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: item.color,
+                opacity: 0.65, margin: '6px 0 0', lineHeight: 1.5 }}>
+                ↳ {item.trigger}
               </p>
             </div>
           ))}
@@ -473,9 +509,15 @@ export default function Home() {
                 <p style={{ fontSize: 14, color: 'var(--ink)', lineHeight: 1.65, margin: '0 0 6px' }}>
                   {row.yangbin}
                 </p>
-                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: row.color, opacity: 0.85 }}>
-                  {row.src}
-                </span>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                  <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: row.color, opacity: 0.85 }}>
+                    {row.src}
+                  </span>
+                  <CopyButton
+                    text={`通行认知：${row.conventional}\n杨斌：${row.yangbin}\n——${row.src}`}
+                    label="复制"
+                  />
+                </div>
               </div>
             </div>
           ))}
@@ -781,6 +823,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── next steps ─────────────────────────────────────────────────────── */}
+      <section style={{ borderTop: '1px solid var(--rule)', background: '#f5f2ec',
+        padding: '20px var(--page-px)' }}>
+        <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+          letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 14px' }}>
+          继续探索
+        </p>
+        <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
+          {[
+            { label: '思想图谱', href: '#map', note: '20 篇文章可视化交叉图' },
+            { label: '原创概念', href: '#concepts', note: '六个杨斌提出的新框架' },
+            { label: '四类行动建议', href: '#actions', note: '按身份找对应行动' },
+            { label: '理论谱系', href: '#theory', note: '五大学术传统的溯源' },
+          ].map((item) => (
+            <a key={item.label} href={item.href} style={{ textDecoration: 'none' }}>
+              <span style={{ fontSize: 14, color: 'var(--ink)', display: 'block',
+                marginBottom: 2, transition: 'color 0.12s' }}>
+                {item.label} →
+              </span>
+              <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>
+                {item.note}
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
       {/* ── closing quote ───────────────────────────────────────────────────── */}
       <section style={{ borderTop: '1px solid var(--rule)', padding: '20px var(--page-px)',
         display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 32 }}>
@@ -803,7 +872,7 @@ export default function Home() {
           thuyangbin.vercel.app · 内容来自公开发表的文章与演讲，仅供学习研究
         </p>
         <p style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', margin: 0 }}>
-          2023–2026
+          最近更新 2026.04 · 共 20 篇
         </p>
       </footer>
     </div>
