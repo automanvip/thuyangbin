@@ -29,10 +29,10 @@ export default function Home() {
             </p>
           </div>
           <div className="header-meta">
-            <p style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', margin: 0 }}>
+            <p style={{ fontSize: 13, color: 'var(--ink-3)', margin: 0, letterSpacing: '0.02em' }}>
               清华大学经济管理学院
             </p>
-            <p style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', margin: '2px 0 0' }}>
+            <p style={{ fontSize: 13, color: 'var(--ink-3)', margin: '3px 0 0', letterSpacing: '0.02em' }}>
               人工智能国际治理研究院
             </p>
           </div>

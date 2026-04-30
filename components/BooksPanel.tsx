@@ -155,6 +155,7 @@ export default function BooksPanel() {
     display: 'flex',
     alignItems: 'baseline',
     gap: 5,
+    whiteSpace: 'nowrap',
     opacity: active ? 1 : 0.85,
     transition: 'opacity 0.12s',
   })
@@ -162,14 +163,13 @@ export default function BooksPanel() {
   return (
     <div className="bio-books" style={{
       flexShrink: 0,
-      width: 380,
       borderLeft: '1px solid var(--rule)',
       paddingLeft: 24,
     }}>
-      {/* aligned 2-col grid: headers + 4 book rows */}
+      {/* aligned 2-col grid: headers + 4 book rows — auto cols so nothing wraps */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: 'auto auto',
         gap: '9px 24px',
         alignItems: 'start',
       }}>
