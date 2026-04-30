@@ -1,5 +1,6 @@
 import ThreadMap from '@/components/ThreadMap'
 import SectionNav from '@/components/SectionNav'
+import BooksPanel from '@/components/BooksPanel'
 import { themes, sortedArticles, discoveries } from '@/lib/data'
 
 export default function Home() {
@@ -13,25 +14,25 @@ export default function Home() {
         <div className="header-row">
           <div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 6 }}>
-              <h1 style={{ fontSize: 22, fontFamily: 'var(--font-serif)', fontWeight: 400,
+              <h1 style={{ fontSize: 24, fontFamily: 'var(--font-serif)', fontWeight: 400,
                 color: 'var(--ink)', letterSpacing: '-0.01em', margin: 0 }}>
                 杨斌的思想地图
               </h1>
-              <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)',
+              <span style={{ fontSize: 13, fontFamily: 'var(--font-mono)',
                 color: 'var(--ink-3)', letterSpacing: '0.05em' }}>
                 AI · 组织 · 教育 · 2023—2026
               </span>
             </div>
-            <p style={{ fontSize: 12, color: 'var(--ink-3)', lineHeight: 1.6, margin: 0, maxWidth: 560 }}>
+            <p style={{ fontSize: 14, color: 'var(--ink-3)', lineHeight: 1.6, margin: 0, maxWidth: 560 }}>
               清华大学杨斌教授公开写作全集——{sortedArticles.length} 篇文章构成一个思想体系的渐进建构，
               而非独立观点的简单堆叠。点击任意文章可展开关联理论、他山之石与发散思考。
             </p>
           </div>
           <div className="header-meta">
-            <p style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', margin: 0 }}>
+            <p style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', margin: 0 }}>
               清华大学经济管理学院
             </p>
-            <p style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', margin: '2px 0 0' }}>
+            <p style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', margin: '2px 0 0' }}>
               人工智能国际治理研究院
             </p>
           </div>
@@ -43,19 +44,18 @@ export default function Home() {
         padding: '20px var(--page-px)' }}>
         <div style={{ display: 'flex', gap: 20, alignItems: 'flex-start' }}>
 
-          {/* portrait — fixed size, no drama */}
+          {/* portrait — watercolor sketch */}
           <div style={{ flexShrink: 0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/portrait.jpg"
               alt="杨斌教授"
               style={{
-                width: 80, height: 106,
+                width: 120, height: 120,
                 objectFit: 'cover',
                 objectPosition: 'center top',
                 display: 'block',
-                borderRadius: 3,
-                border: '1px solid var(--rule)',
+                borderRadius: 2,
               }}
             />
           </div>
@@ -64,11 +64,11 @@ export default function Home() {
           <div style={{ flex: 1, minWidth: 0 }}>
             {/* name row */}
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 3 }}>
-              <span style={{ fontSize: 18, fontFamily: 'var(--font-serif)', fontWeight: 400, color: 'var(--ink)' }}>杨斌</span>
-              <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.05em' }}>Yang Bin</span>
+              <span style={{ fontSize: 20, fontFamily: 'var(--font-serif)', fontWeight: 400, color: 'var(--ink)' }}>杨斌</span>
+              <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.05em' }}>Yang Bin</span>
             </div>
             {/* titles */}
-            <div style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', marginBottom: 10, lineHeight: 1.8 }}>
+            <div style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', marginBottom: 10, lineHeight: 1.8 }}>
               清华大学经济管理学院 教授
               <span style={{ margin: '0 6px', color: 'var(--rule-2)' }}>·</span>
               前清华大学副校长兼教务长（2014—2024）
@@ -80,10 +80,10 @@ export default function Home() {
             <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
               {/* bio text */}
               <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.75, margin: '0 0 6px' }}>
+                <p style={{ fontSize: 14, color: 'var(--ink-2)', lineHeight: 1.75, margin: '0 0 6px' }}>
                   管理学者，长期从事领导力、组织行为与高等教育研究。1987 年入清华经管，此后三十余年于此治学、执教，2014 年出任清华大学副校长兼教务长，主持全校学术事务逾十年。
                 </p>
-                <p style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.75, margin: '0 0 12px' }}>
+                <p style={{ fontSize: 14, color: 'var(--ink-2)', lineHeight: 1.75, margin: '0 0 12px' }}>
                   2023 年起系统写作 AI 与组织、教育、治理议题，提出 xᴬᴵ 框架与"模元"等原创概念。曾获 2023 年国家级教学成果奖特等奖。
                 </p>
                 {/* stats */}
@@ -95,50 +95,14 @@ export default function Home() {
                     { label: '文章', detail: `${sortedArticles.length} 篇` },
                   ].map(({ label, detail }) => (
                     <div key={label} style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
-                      <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{label}</span>
-                      <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink)', fontWeight: 500 }}>{detail}</span>
+                      <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{label}</span>
+                      <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--ink)', fontWeight: 500 }}>{detail}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* books — two compact columns */}
-              <div className="bio-books" style={{ flexShrink: 0, width: 380, borderLeft: '1px solid var(--rule)', paddingLeft: 24, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 24px' }}>
-                {/* 著译 */}
-                <div>
-                  <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 8px' }}>著译</p>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-                    {[
-                      { title: '卓越领导之道', role: '著' },
-                      { title: '沉静领导', role: '译' },
-                      { title: '管理者而非 MBA', role: '译' },
-                      { title: '极客与怪杰', role: '译' },
-                    ].map(b => (
-                      <div key={b.title} style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
-                        <span style={{ fontSize: 8, fontFamily: 'var(--font-mono)', color: '#b45309', background: '#b4530912', padding: '1px 4px', borderRadius: 2, flexShrink: 0 }}>{b.role}</span>
-                        <span style={{ fontSize: 11, color: 'var(--ink)', fontFamily: 'var(--font-serif)' }}>《{b.title}》</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                {/* 文中常引 */}
-                <div>
-                  <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 8px' }}>文中常引</p>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-                    {[
-                      { title: '第五项修炼', note: 'Senge' },
-                      { title: '有限与无限的游戏', note: 'Carse' },
-                      { title: '发展即自由', note: 'Sen' },
-                      { title: '创新者的窘境', note: 'Christensen' },
-                    ].map(b => (
-                      <div key={b.title}>
-                        <span style={{ fontSize: 11, color: 'var(--ink)', fontFamily: 'var(--font-serif)' }}>《{b.title}》</span>
-                        <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', marginLeft: 5 }}>{b.note}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <BooksPanel />
 
             </div>
           </div>
@@ -161,11 +125,11 @@ export default function Home() {
             borderRight: i < arr.length - 1 ? '1px solid var(--rule)' : 'none',
             marginRight: i < arr.length - 1 ? 24 : 0,
           }}>
-            <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+            <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
               letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 4px' }}>
               {label}
             </p>
-            <p style={{ fontSize: 13, color: 'var(--ink)', fontWeight: 500, margin: 0,
+            <p style={{ fontSize: 15, color: 'var(--ink)', fontWeight: 500, margin: 0,
               fontFamily: mono ? 'var(--font-mono)' : 'inherit' }}>
               {value}
             </p>
@@ -179,7 +143,7 @@ export default function Home() {
       {/* ── reading paths ────────────────────────────────────────────────────── */}
       <div style={{ borderBottom: '1px solid var(--rule)', background: '#f5f2ec',
         padding: '10px var(--page-px)', display: 'flex', alignItems: 'center', gap: 20, overflowX: 'auto', scrollbarWidth: 'none' }}>
-        <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+        <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
           letterSpacing: '0.08em', flexShrink: 0 }}>
           推荐入口 →
         </span>
@@ -190,8 +154,8 @@ export default function Home() {
           { label: '政策视角（3篇）', note: '命名 · 模元 · 善AI', color: '#be123c' },
         ].map((p) => (
           <div key={p.label} style={{ display: 'flex', alignItems: 'baseline', gap: 6, flexShrink: 0 }}>
-            <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: p.color }}>{p.label}</span>
-            <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>{p.note}</span>
+            <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: p.color }}>{p.label}</span>
+            <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>{p.note}</span>
           </div>
         ))}
       </div>
@@ -199,7 +163,7 @@ export default function Home() {
       {/* ── interaction hint + legend ──────────────────────────────────────── */}
       <div style={{ borderBottom: '1px solid var(--rule)',
         padding: '8px var(--page-px)', display: 'flex', alignItems: 'center', gap: 24 }}>
-        <p style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', margin: 0 }}>
+        <p style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', margin: 0 }}>
           悬停脉络 → 高亮连线 &nbsp;·&nbsp; 悬停文章 → 激活节点 &nbsp;·&nbsp; 点击文章 → 展开详情
         </p>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginLeft: 'auto', flexWrap: 'wrap' }}>
@@ -207,10 +171,10 @@ export default function Home() {
             <div key={t.id} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
               <span style={{ width: 7, height: 7, borderRadius: '50%',
                 background: t.color, display: 'block', flexShrink: 0 }} />
-              <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>
+              <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>
                 {t.label}
               </span>
-              <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--rule-2)' }}>
+              <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--rule-2)' }}>
                 {themeArticleCounts.find(x => x.theme.id === t.id)?.count}
               </span>
             </div>
@@ -221,7 +185,7 @@ export default function Home() {
       {/* ── thread map ──────────────────────────────────────────────────────── */}
       <div id="map" style={{ borderBottom: '1px solid var(--rule)' }}>
         <div className="map-scroll-hint" style={{
-          fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+          fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
           textAlign: 'center', padding: '6px 0', background: '#f7f4ef',
           borderBottom: '1px solid var(--rule)',
         }}>
@@ -233,7 +197,7 @@ export default function Home() {
       {/* ── discoveries row ─────────────────────────────────────────────────── */}
       <section id="discoveries" style={{ borderBottom: '1px solid var(--rule)', background: '#f7f4ef',
         padding: '20px var(--page-px)' }}>
-        <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+        <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
           letterSpacing: '0.12em', textTransform: 'uppercase', margin: '0 0 14px' }}>
           图谱发现
         </p>
@@ -265,15 +229,15 @@ export default function Home() {
             },
           ].map((item) => (
             <div key={item.label} style={{ paddingRight: 16 }}>
-              <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+              <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
                 letterSpacing: '0.08em', margin: '0 0 5px' }}>
                 {item.label}
               </p>
-              <p style={{ fontSize: 12, color: 'var(--ink)', fontWeight: 500, margin: '0 0 4px',
+              <p style={{ fontSize: 14, color: 'var(--ink)', fontWeight: 500, margin: '0 0 4px',
                 lineHeight: 1.4 }}>
                 {item.value}
               </p>
-              <p style={{ fontSize: 11, color: 'var(--ink-3)', margin: 0, lineHeight: 1.5 }}>
+              <p style={{ fontSize: 13, color: 'var(--ink-3)', margin: 0, lineHeight: 1.5 }}>
                 {item.sub}
               </p>
             </div>
@@ -283,7 +247,7 @@ export default function Home() {
 
       {/* ── core theses ─────────────────────────────────────────────────────── */}
       <section id="theses" style={{ borderBottom: '1px solid var(--rule)', background: 'var(--paper)', padding: '24px var(--page-px)' }}>
-        <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+        <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
           letterSpacing: '0.12em', textTransform: 'uppercase', margin: '0 0 18px' }}>
           核心命题
         </p>
@@ -304,20 +268,20 @@ export default function Home() {
               background: item.color + '06',
               display: 'flex', flexDirection: 'column', gap: 8,
             }}>
-              <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: item.color,
+              <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: item.color,
                 letterSpacing: '0.06em', opacity: 0.8 }}>
                 {item.label}
               </span>
-              <p style={{ fontSize: 13, fontFamily: 'var(--font-serif)', fontStyle: 'italic',
+              <p style={{ fontSize: 15, fontFamily: 'var(--font-serif)', fontStyle: 'italic',
                 color: 'var(--ink)', lineHeight: 1.6, margin: 0, flex: 1 }}>
                 &ldquo;{item.quote}&rdquo;
               </p>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
-                <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
                   overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 140 }}>
                   {item.src}
                 </span>
-                <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--rule-2)', flexShrink: 0 }}>
+                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--rule-2)', flexShrink: 0 }}>
                   {item.date}
                 </span>
               </div>
@@ -328,7 +292,7 @@ export default function Home() {
 
       {/* ── insight arc ─────────────────────────────────────────────────────── */}
       <section id="arc" style={{ borderBottom: '1px solid var(--rule)', background: 'var(--paper)', padding: '24px var(--page-px)' }}>
-        <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+        <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
           letterSpacing: '0.12em', textTransform: 'uppercase', margin: '0 0 20px' }}>
           思想弧线
         </p>
@@ -381,22 +345,22 @@ export default function Home() {
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 marginBottom: 14, flexShrink: 0,
               }}>
-                <span style={{ fontSize: 13, color: item.color, fontFamily: 'var(--font-mono)', fontWeight: 500 }}>
+                <span style={{ fontSize: 15, color: item.color, fontFamily: 'var(--font-mono)', fontWeight: 500 }}>
                   {item.node}
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
-                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: item.color, fontWeight: 500 }}>
+                <span style={{ fontSize: 13, fontFamily: 'var(--font-mono)', color: item.color, fontWeight: 500 }}>
                   {item.phase}
                 </span>
-                <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>
+                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>
                   {item.period}
                 </span>
               </div>
-              <p style={{ fontSize: 12, color: 'var(--ink)', fontWeight: 500, margin: '0 0 6px', lineHeight: 1.4 }}>
+              <p style={{ fontSize: 14, color: 'var(--ink)', fontWeight: 500, margin: '0 0 6px', lineHeight: 1.4 }}>
                 {item.title}
               </p>
-              <p style={{ fontSize: 11, color: 'var(--ink-3)', margin: 0, lineHeight: 1.6 }}>
+              <p style={{ fontSize: 13, color: 'var(--ink-3)', margin: 0, lineHeight: 1.6 }}>
                 {item.desc}
               </p>
             </div>
@@ -409,11 +373,11 @@ export default function Home() {
           gap: '0 48px',
         }}>
           <div>
-            <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+            <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
               letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 8px' }}>
               核心张力
             </p>
-            <p style={{ fontSize: 12, color: 'var(--ink-2)', margin: 0, lineHeight: 1.65 }}>
+            <p style={{ fontSize: 14, color: 'var(--ink-2)', margin: 0, lineHeight: 1.65 }}>
               杨斌的整体思想是一个持续的张力结构：<strong style={{ color: 'var(--ink)', fontWeight: 500 }}>AI的指数力量</strong>
               与<strong style={{ color: 'var(--ink)', fontWeight: 500 }}>人的不可外包性</strong>之间的张力。
               他既不是AI乐观主义者（"一切都会更好"），也不是AI悲观主义者（"人类将被取代"），
@@ -421,11 +385,11 @@ export default function Home() {
             </p>
           </div>
           <div>
-            <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+            <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
               letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 8px' }}>
               未被回答的问题
             </p>
-            <p style={{ fontSize: 12, color: 'var(--ink-2)', margin: 0, lineHeight: 1.65 }}>
+            <p style={{ fontSize: 14, color: 'var(--ink-2)', margin: 0, lineHeight: 1.65 }}>
               贯穿全部文章的开放问题：当AI的自主性超越人类判断力的临界点，
               "唐三藏"还能真正把关吗？底数的质变，究竟由谁来发起？
               这是整个思想体系留给下一个阶段的真正难题。
@@ -436,11 +400,11 @@ export default function Home() {
 
       {/* ── narrative ruptures ──────────────────────────────────────────────── */}
       <section id="ruptures" style={{ borderBottom: '1px solid var(--rule)', background: '#f7f4ef', padding: '24px var(--page-px)' }}>
-        <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+        <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
           letterSpacing: '0.12em', textTransform: 'uppercase', margin: '0 0 4px' }}>
           叙事断裂
         </p>
-        <p style={{ fontSize: 11, color: 'var(--ink-3)', margin: '0 0 20px', lineHeight: 1.5 }}>
+        <p style={{ fontSize: 13, color: 'var(--ink-3)', margin: '0 0 20px', lineHeight: 1.5 }}>
           杨斌的论断如何系统性地偏离主流 AI 叙事
         </p>
 
@@ -448,12 +412,12 @@ export default function Home() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0,
           marginBottom: 0, paddingBottom: 10, borderBottom: '1px solid var(--rule)' }}>
           <div style={{ paddingRight: 24, borderRight: '1px solid var(--rule)' }}>
-            <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+            <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
               letterSpacing: '0.1em', textTransform: 'uppercase', margin: 0 }}>通行认知</p>
           </div>
           <div style={{ paddingLeft: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontSize: 10, color: 'var(--rule-2)' }}>→</span>
-            <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+            <span style={{ fontSize: 12, color: 'var(--rule-2)' }}>→</span>
+            <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
               letterSpacing: '0.1em', textTransform: 'uppercase', margin: 0 }}>杨斌论断</p>
           </div>
         </div>
@@ -499,7 +463,7 @@ export default function Home() {
             }}>
               {/* conventional — gray, italic */}
               <div style={{ paddingRight: 24, borderRight: '1px solid var(--rule)' }}>
-                <p style={{ fontSize: 12, color: 'var(--ink-3)', lineHeight: 1.65, margin: 0,
+                <p style={{ fontSize: 14, color: 'var(--ink-3)', lineHeight: 1.65, margin: 0,
                   fontStyle: 'italic' }}>
                   {row.conventional}
                 </p>
@@ -507,10 +471,10 @@ export default function Home() {
 
               {/* Yang Bin */}
               <div style={{ paddingLeft: 24 }}>
-                <p style={{ fontSize: 12, color: 'var(--ink)', lineHeight: 1.65, margin: '0 0 6px' }}>
+                <p style={{ fontSize: 14, color: 'var(--ink)', lineHeight: 1.65, margin: '0 0 6px' }}>
                   {row.yangbin}
                 </p>
-                <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: row.color, opacity: 0.85 }}>
+                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: row.color, opacity: 0.85 }}>
                   {row.src}
                 </span>
               </div>
@@ -522,11 +486,11 @@ export default function Home() {
       {/* ── original concepts ───────────────────────────────────────────────── */}
       <section id="concepts" style={{ borderBottom: '1px solid var(--rule)', background: 'var(--paper)', padding: '24px var(--page-px)' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 6 }}>
-          <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+          <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
             letterSpacing: '0.12em', textTransform: 'uppercase', margin: 0 }}>
             原创概念
           </p>
-          <span style={{ fontSize: 10, color: 'var(--ink-3)' }}>
+          <span style={{ fontSize: 12, color: 'var(--ink-3)' }}>
             杨斌提出或首次系统化的新框架——区别于对已有理论的引用与延伸
           </span>
         </div>
@@ -589,18 +553,18 @@ export default function Home() {
                 marginBottom: 0,
               }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 5 }}>
-                  <span style={{ fontSize: 13, fontFamily: 'var(--font-serif)', color: c.color, fontWeight: 400 }}>
+                  <span style={{ fontSize: 15, fontFamily: 'var(--font-serif)', color: c.color, fontWeight: 400 }}>
                     {c.name}
                   </span>
-                  <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>
+                  <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>
                     {c.year}
                   </span>
-                  <span style={{ fontSize: 8, fontFamily: 'var(--font-mono)', color: c.color, opacity: 0.7,
+                  <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: c.color, opacity: 0.7,
                     background: c.color + '12', padding: '1px 5px', borderRadius: 2 }}>
                     {c.type}
                   </span>
                 </div>
-                <p style={{ fontSize: 11, color: 'var(--ink-2)', lineHeight: 1.65, margin: 0 }}>
+                <p style={{ fontSize: 13, color: 'var(--ink-2)', lineHeight: 1.65, margin: 0 }}>
                   {c.def}
                 </p>
               </div>
@@ -612,11 +576,11 @@ export default function Home() {
       {/* ── reader action map ────────────────────────────────────────────────── */}
       <section id="actions" style={{ borderBottom: '1px solid var(--rule)', background: '#f7f4ef', padding: '24px var(--page-px)' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 6 }}>
-          <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+          <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
             letterSpacing: '0.12em', textTransform: 'uppercase', margin: 0 }}>
             四类读者行动建议
           </p>
-          <span style={{ fontSize: 10, color: 'var(--ink-3)' }}>读完之后，不同身份的人各自该做什么</span>
+          <span style={{ fontSize: 12, color: 'var(--ink-3)' }}>读完之后，不同身份的人各自该做什么</span>
         </div>
         <div style={{ height: 1, background: 'var(--rule)', margin: '14px 0' }} />
         <div className="resp-grid-4" style={{ gap: '0 0' }}>
@@ -669,22 +633,22 @@ export default function Home() {
               paddingRight: i < arr.length - 1 ? 20 : 0,
             }}>
               <div style={{ marginBottom: 10 }}>
-                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: aud.color, fontWeight: 500,
+                <span style={{ fontSize: 13, fontFamily: 'var(--font-mono)', color: aud.color, fontWeight: 500,
                   display: 'block', marginBottom: 2 }}>
                   {aud.role}
                 </span>
-                <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>
+                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>
                   {aud.sub}
                 </span>
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {aud.items.map((item, ii) => (
                   <li key={ii} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-                    <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: aud.color,
+                    <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: aud.color,
                       flexShrink: 0, marginTop: 2 }}>
                       {String(ii + 1).padStart(2, '0')}
                     </span>
-                    <span style={{ fontSize: 11, color: 'var(--ink-2)', lineHeight: 1.6 }}>
+                    <span style={{ fontSize: 13, color: 'var(--ink-2)', lineHeight: 1.6 }}>
                       {item}
                     </span>
                   </li>
@@ -698,11 +662,11 @@ export default function Home() {
       {/* ── theory landscape ─────────────────────────────────────────────────── */}
       <section id="theory" style={{ borderBottom: '1px solid var(--rule)', background: 'var(--paper)', padding: '24px var(--page-px)' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 6 }}>
-          <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+          <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
             letterSpacing: '0.12em', textTransform: 'uppercase', margin: 0 }}>
             理论引力场
           </p>
-          <span style={{ fontSize: 10, color: 'var(--ink-3)' }}>
+          <span style={{ fontSize: 12, color: 'var(--ink-3)' }}>
             横跨五大学术传统——跨界度是杨斌思想独特性的重要来源
           </span>
         </div>
@@ -758,22 +722,22 @@ export default function Home() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
                 <span style={{ width: 6, height: 6, borderRadius: '50%', background: t.color,
                   display: 'block', flexShrink: 0 }} />
-                <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: t.color, fontWeight: 500 }}>
+                <span style={{ fontSize: 13, fontFamily: 'var(--font-mono)', color: t.color, fontWeight: 500 }}>
                   {t.tradition}
                 </span>
               </div>
-              <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+              <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
                 lineHeight: 1.6, margin: '0 0 6px' }}>
                 {t.scholars}
               </p>
-              <p style={{ fontSize: 10, color: 'var(--ink-3)', lineHeight: 1.5, margin: '0 0 8px',
+              <p style={{ fontSize: 12, color: 'var(--ink-3)', lineHeight: 1.5, margin: '0 0 8px',
                 fontStyle: 'italic' }}>
                 {t.what}
               </p>
-              <p style={{ fontSize: 11, color: 'var(--ink-2)', lineHeight: 1.6, margin: '0 0 8px' }}>
+              <p style={{ fontSize: 13, color: 'var(--ink-2)', lineHeight: 1.6, margin: '0 0 8px' }}>
                 {t.takeaway}
               </p>
-              <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: t.color, opacity: 0.7 }}>
+              <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: t.color, opacity: 0.7 }}>
                 → {t.articles}
               </span>
             </div>
@@ -783,7 +747,7 @@ export default function Home() {
 
       {/* ── six themes explained ────────────────────────────────────────────── */}
       <section id="themes" style={{ background: '#f5f2ec', padding: '24px var(--page-px) 20px' }}>
-        <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+        <p style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
           letterSpacing: '0.12em', textTransform: 'uppercase', margin: '0 0 16px' }}>
           六条脉络
         </p>
@@ -799,16 +763,16 @@ export default function Home() {
                 </div>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 3 }}>
-                    <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)',
+                    <span style={{ fontSize: 14, fontFamily: 'var(--font-mono)',
                       color: t.color, fontWeight: 500 }}>
                       {t.label}
                     </span>
-                    <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)',
+                    <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)',
                       color: 'var(--ink-3)' }}>
                       {count} 篇
                     </span>
                   </div>
-                  <p style={{ fontSize: 11, color: 'var(--ink-2)', margin: 0, lineHeight: 1.55 }}>
+                  <p style={{ fontSize: 13, color: 'var(--ink-2)', margin: 0, lineHeight: 1.55 }}>
                     {t.description}
                   </p>
                 </div>
@@ -821,14 +785,14 @@ export default function Home() {
       {/* ── closing quote ───────────────────────────────────────────────────── */}
       <section style={{ borderTop: '1px solid var(--rule)', padding: '20px var(--page-px)',
         display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 32 }}>
-        <p style={{ fontSize: 14, fontFamily: 'var(--font-serif)', fontStyle: 'italic',
+        <p style={{ fontSize: 16, fontFamily: 'var(--font-serif)', fontStyle: 'italic',
           color: 'var(--ink-2)', margin: 0, lineHeight: 1.7, maxWidth: 560 }}>
           "不是 AI+，是 xᴬᴵ——指数位置意味着底数必须质变。<br />
           底数不变，AI 只放大既有缺陷。"
         </p>
         <div style={{ textAlign: 'right', flexShrink: 0 }}>
-          <p style={{ fontSize: 11, color: 'var(--ink-2)', margin: '0 0 2px' }}>杨斌</p>
-          <p style={{ fontSize: 10, fontFamily: 'var(--font-mono)',
+          <p style={{ fontSize: 13, color: 'var(--ink-2)', margin: '0 0 2px' }}>杨斌</p>
+          <p style={{ fontSize: 12, fontFamily: 'var(--font-mono)',
             color: 'var(--ink-3)', margin: 0 }}>2025.03 / 2025.11</p>
         </div>
       </section>
@@ -836,10 +800,10 @@ export default function Home() {
       {/* ── footer ──────────────────────────────────────────────────────────── */}
       <footer style={{ borderTop: '1px solid var(--rule)', padding: '10px var(--page-px)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <p style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', margin: 0 }}>
+        <p style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', margin: 0 }}>
           thuyangbin.vercel.app · 内容来自公开发表的文章与演讲，仅供学习研究
         </p>
-        <p style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', margin: 0 }}>
+        <p style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)', margin: 0 }}>
           2023–2026
         </p>
       </footer>

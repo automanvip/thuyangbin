@@ -31,7 +31,7 @@ export default function SectionNav() {
           key={s.href}
           href={s.href}
           style={{
-            fontSize: 9,
+            fontSize: 11,
             fontFamily: 'var(--font-mono)',
             color: 'var(--ink-3)',
             letterSpacing: '0.06em',
