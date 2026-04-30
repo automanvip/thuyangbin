@@ -80,6 +80,7 @@ body {
   .header-row    { flex-direction: column; gap: 8px; }
   .header-meta   { text-align: left; }
   .bio-inner     { flex-direction: column; gap: 20px; }
+  .bio-books     { display: none; }
   .resp-grid-4   { grid-template-columns: repeat(2, 1fr); }
   .resp-grid-3   { grid-template-columns: repeat(2, 1fr); }
   .resp-grid-5   { grid-template-columns: repeat(2, 1fr); }

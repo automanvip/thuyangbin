@@ -76,10 +76,10 @@ export default function Home() {
               <span style={{ color: 'var(--rule-2)' }}>·</span>
               <span>人工智能国际治理研究院 学术委员会主任</span>
             </div>
-            <p style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.8, margin: '0 0 8px', maxWidth: 660 }}>
+            <p style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.8, margin: '0 0 8px', maxWidth: 600 }}>
               管理学者，清华大学经济管理学院教授，长期从事领导力、组织行为与高等教育研究。1987 年入清华经管，此后三十余年于此治学、执教，历任学院副院长、常务副院长，并于 2014 年出任清华大学副校长兼教务长，主持全校学术事务逾十年。
             </p>
-            <p style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.8, margin: '0 0 10px', maxWidth: 660 }}>
+            <p style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.8, margin: '0 0 10px', maxWidth: 600 }}>
               2023 年起，围绕 AI 与组织、AI 与教育、AI 的命名与治理，系统写作并提出 xᴬᴵ 框架、"模元"等原创概念，构成本站所呈现的思想体系。曾获 2023 年国家级教学成果奖特等奖。其思考的独特性，在于将技术判断与伦理追问、组织诊断与教育关怀编织为一个整体——持续追问"谁来决定方向"。
             </p>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -96,6 +96,69 @@ export default function Home() {
                   </span>
                   <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--ink-2)', fontWeight: 500 }}>
                     {detail}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── books sidebar ──────────────────────────────────────────────── */}
+          <div className="bio-books" style={{
+            flexShrink: 0, width: 196,
+            borderLeft: '1px solid var(--rule)',
+            paddingLeft: 24,
+          }}>
+            {/* authored / translated */}
+            <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+              letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 10px' }}>
+              著译
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
+              {[
+                { title: '卓越领导之道', role: '著', year: '2008', note: '人大出版社' },
+                { title: '沉静领导', role: '译', year: '2003', note: 'Badaracco' },
+                { title: '管理者而非 MBA', role: '译', year: '2004', note: 'Mintzberg' },
+                { title: '极客与怪杰', role: '译', year: '2006', note: '领导力研究' },
+              ].map(b => (
+                <div key={b.title} style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
+                    <span style={{ fontSize: 8, fontFamily: 'var(--font-mono)', color: '#b45309',
+                      background: '#b4530912', padding: '1px 4px', borderRadius: 2, flexShrink: 0 }}>
+                      {b.role}
+                    </span>
+                    <span style={{ fontSize: 11, color: 'var(--ink)', fontFamily: 'var(--font-serif)' }}>
+                      《{b.title}》
+                    </span>
+                  </div>
+                  <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+                    paddingLeft: 24 }}>
+                    {b.note} · {b.year}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* divider */}
+            <div style={{ height: 1, background: 'var(--rule)', marginBottom: 14 }} />
+
+            {/* frequently cited */}
+            <p style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)',
+              letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 10px' }}>
+              文中常引
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[
+                { title: '第五项修炼', author: 'Senge', note: '学习型组织' },
+                { title: '有限与无限的游戏', author: 'Carse', note: '无限游戏视角' },
+                { title: '发展即自由', author: 'Sen', note: '能力路径' },
+                { title: '创新者的窘境', author: 'Christensen', note: '颠覆性创新' },
+              ].map(b => (
+                <div key={b.title} style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  <span style={{ fontSize: 11, color: 'var(--ink)', fontFamily: 'var(--font-serif)' }}>
+                    《{b.title}》
+                  </span>
+                  <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--ink-3)' }}>
+                    {b.author} · {b.note}
                   </span>
                 </div>
               ))}
